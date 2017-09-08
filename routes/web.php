@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\MessagePosted;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,24 @@ Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallba
 
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\AuthController@authenticate');
+
+Route::get('/chat', function() {
+    return view('/chat');
+})->middleware('auth');
+
+Route::get('/messages', function() {
+    return App\Message::with('user')->get();
+})->middleware('auth');
+
+
+Route::post('/messages', function() {
+    $user = Auth::user();
+
+    $message = $user->messages()->create([
+        'message' => request()->get('message')        
+    ]);
+
+    broadcast(new MessagePosted($message, $user))->toOther();
+
+    return ['status' => 'OK'];
+})->middleware('auth');

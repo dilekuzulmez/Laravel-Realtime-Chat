@@ -28,4 +28,8 @@ class User extends Authenticatable
     ];
     protected $table = 'users';    
     
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
