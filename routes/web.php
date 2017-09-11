@@ -28,7 +28,7 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\AuthController@authenticate');
 
 Route::get('/chat', function() {
-    return view('/chat');
+    return view('chat');
 })->middleware('auth');
 
 Route::get('/messages', function() {
