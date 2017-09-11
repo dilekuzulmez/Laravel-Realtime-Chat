@@ -31,7 +31,7 @@ const app = new Vue({
             this.messages.push(message);
 
             axios.post('/messages', message).then(response => {
-
+                
             });
         }
     },

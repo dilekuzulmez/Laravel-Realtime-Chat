@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="chat-log">
-        <chat-message class="chat-message" v-for="message in messages":key="message.id" :message="message"></chat-message>
+        <chat-message class="chat-message" v-for="message in messages" :message="message" :key="message.id"></chat-message>
         <div class="empty" v-show="messages.length === 0">
             bir şey yok henüz!
         </div>
@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style lang="css">
-
 .chat-log .chat-message:nth-child(even) {
     background-color: #ff00ff;
 }
@@ -24,5 +23,4 @@ export default {
     padding: 1rem;
     text-align: center;
 }
-
 </style>
